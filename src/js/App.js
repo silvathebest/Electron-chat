@@ -1,9 +1,31 @@
 import React from "react"
+import HomeView from "./views/Home"
+
+import {
+  HashRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom"
 
 export default function App() {
-    const title = 'Hello world'
-    const secondTItle = 'New Title'
-    return (
-        <h1>{title}</h1>
-    )
+  return (
+    <Router>
+      <Switch>
+        <Route path="/settings">
+          <HomeView />
+        </Route>
+        <Route path="/login">
+          <HomeView />
+        </Route>
+        <Route path="/register">
+          <HomeView />
+        </Route>
+        <Route path="/">
+          <HomeView />
+        </Route>
+      </Switch>
+
+    </Router>
+
+  )
 }
