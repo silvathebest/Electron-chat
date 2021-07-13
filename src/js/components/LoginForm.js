@@ -1,12 +1,13 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
+import {login} from '../actions/auth'
+import {useDispatch} from 'react-redux'
 
 export default function LoginForm() {
   const {register, handleSubmit} = useForm()
-  const onSubmit = data => {
-    console.log('aboba')
-    console.log(data)
-  }
+  const dispatch = useDispatch()
+
+  const onSubmit = data => dispatch(login(data))
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="centered-container-form">
