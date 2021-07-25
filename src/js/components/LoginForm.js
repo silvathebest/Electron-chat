@@ -1,13 +1,18 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
+import {useDispatch, useSelector} from 'react-redux'
 import {login} from '../actions/auth'
-import {useDispatch} from 'react-redux'
+import LoadingView from './shared/LoadingView'
 
 export default function LoginForm() {
   const {register, handleSubmit} = useForm()
   const dispatch = useDispatch()
+  const error = useSelector(({auth}) => auth.login.error)
+  const isChecking = useSelector(({auth}) => auth.login.isChecking)
 
   const onSubmit = data => dispatch(login(data))
+
+  if (isChecking) return <LoadingView/>
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="centered-container-form">
@@ -34,7 +39,7 @@ export default function LoginForm() {
             className="form-control"
             id="password"/>
         </div>
-        {false && <div className="alert alert-danger small">Some error</div>}
+        {error && <div className="alert alert-danger small">{error.message}</div>}
         <button type="submit" className="btn btn-outline-primary">Login</button>
       </div>
     </form>

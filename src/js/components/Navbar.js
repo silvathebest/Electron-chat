@@ -23,22 +23,21 @@ export default function Navbar() {
           </button>
         </div>
         <div className="chat-navbar-inner-right">
-          {/*<button
-            onClick={() => history.push('/')}
-            className="btn btn-sm btn-outline-success ml-2">
-            Login
-          </button>*/}
-          {user &&
-          <>
-            <img className="avatar mr-2" src={user.avatar} alt=""/>
-            <span className="logged-in-user">Hi, {user.username}</span>
+          {user ?
+            <>
+              <img className="avatar mr-2" src={user.avatar} alt=""/>
+              <span className="logged-in-user">Hi, {user.username}</span>
+              <button
+                onClick={() => dispatch(logout())}
+                className="btn btn-sm btn-outline-danger ml-3">
+                Logout
+              </button>
+            </> :
             <button
-              onClick={() => dispatch(logout())}
-              className="btn btn-sm btn-outline-danger ml-3">
-              Logout
-            </button>
-          </>
-          }
+              onClick={() => history.push('/')}
+              className="btn btn-sm btn-outline-success ml-2">
+              Login
+            </button>}
         </div>
       </nav>
     </div>
